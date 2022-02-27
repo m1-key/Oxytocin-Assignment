@@ -4,43 +4,43 @@ import dataset from "./dataset";
 import Column from "./Column";
 import { DragDropContext, Droppable } from "react-beautiful-dnd";
 
-
 const Container = styled.div`
   display: flex;
 `;
 
 const App = () => {
-    const [data, setData] = useState(dataset);
+  const [data, setData] = useState(dataset);
   const [addData, setAddData] = useState();
-  const [curr, setCurr] = useState(4);
+  const [currGrp, setCurrGrp] = useState(4);
+  const [currHigh, setCurrHigh] = useState(4);
 
   const addHighlight = () => {
     const highlight = prompt("Enter highlight: ");
     if (highlight !== null) {
-      data.tasks[`task-${curr + 1}`] = {
-        id: `task-${curr + 1}`,
+      data.tasks[`task-${currHigh + 1}`] = {
+        id: `task-${currHigh + 1}`,
         content: highlight,
       };
-      data.columns[`column-${curr}`].taskIds.push(`task-${curr + 1}`);
-      setCurr(curr + 1);
-        setData(data);
-        window.localStorage.setItem("data",data)
+      data.columns[`column-${currGrp}`].taskIds.push(`task-${currHigh + 1}`);
+      setCurrHigh(currHigh + 1);
+      setData(data);
+      window.localStorage.setItem("data", data);
     }
   };
 
   const addGroup = () => {
     const group = prompt("Enter group name");
     if (group !== null) {
-      data.columns[`column-${curr + 1}`] = {
-        id: `column-${curr + 1}`,
+      data.columns[`column-${currGrp + 1}`] = {
+        id: `column-${currGrp + 1}`,
         title: group,
         taskIds: [],
       };
-      data.columnOrder.push(`column-${curr + 1}`);
+      data.columnOrder.push(`column-${currGrp + 1}`);
       console.log(data);
-      setCurr(curr + 1);
-        setData(data);
-        window.localStorage.setItem("data",data)
+      setCurrGrp(currGrp + 1);
+      setData(data);
+      window.localStorage.setItem("data", data);
     }
   };
 
@@ -65,8 +65,8 @@ const App = () => {
         ...data,
         columnOrder: newColumnOrder,
       };
-        setData(newState);
-        window.localStorage.setItem("data",newState);
+      setData(newState);
+      window.localStorage.setItem("data", newState);
       return;
     }
 
@@ -123,7 +123,7 @@ const App = () => {
       <div>
         <button
           style={{
-              fontSize: "15px",
+            fontSize: "15px",
             borderRadius: "5px",
             margin: "5px",
           }}
@@ -133,7 +133,7 @@ const App = () => {
         </button>
         <button
           style={{
-              fontSize: "15px",
+            fontSize: "15px",
             borderRadius: "5px",
             margin: "5px",
           }}
