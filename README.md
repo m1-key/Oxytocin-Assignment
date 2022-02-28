@@ -1,3 +1,6 @@
+# Website
+[Click here](https://hungry-ritchie-69abf2.netlify.app/)
+
 # Build
 1. git clone https://github.com/m1-key/Oxytocin-ScrumBoard
 2. cd Oxytocin-ScrumBoard

@@ -16,12 +16,20 @@ const App = () => {
 
   useEffect(() => {
     let data = window.localStorage.getItem("data");
-    data = JSON.parse(data);
-    setData(data);
+    if (data !== null) {
+      data = JSON.parse(data);
+      setData(data);
+    } else {
+      setData(dataset);
+    }
   }, []);
 
   useEffect(() => {
+    if (data === null) {
+      window.localStorage.setItem("data", JSON.stringify(dataset));
+    } else {
       window.localStorage.setItem("data", JSON.stringify(data));
+    }
   });
 
   const addHighlight = () => {
