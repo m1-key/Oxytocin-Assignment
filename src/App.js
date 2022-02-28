@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import dataset from "./dataset";
 import Column from "./Column";
@@ -13,6 +13,16 @@ const App = () => {
   const [addData, setAddData] = useState();
   const [currGrp, setCurrGrp] = useState(4);
   const [currHigh, setCurrHigh] = useState(4);
+
+  useEffect(() => {
+    let data = window.localStorage.getItem("data");
+    data = JSON.parse(data);
+    setData(data);
+  }, []);
+
+  useEffect(() => {
+      window.localStorage.setItem("data", JSON.stringify(data));
+  });
 
   const addHighlight = () => {
     const highlight = prompt("Enter highlight: ");
